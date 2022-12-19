@@ -39,7 +39,7 @@
             <!-- <AppenderRef ref="file" /> config fichier de log -->
         </Root>
 
-        <Logger name="com.groupeisi.controller" level="debug" additivity="false">
+        <Logger name="com.groupeisi.controllerRest" level="debug" additivity="false">
             <AppenderRef ref="Console_JSON" />
         </Logger>
 

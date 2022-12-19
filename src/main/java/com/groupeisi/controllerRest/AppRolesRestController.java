@@ -1,4 +1,4 @@
-package com.groupeisi.controller;
+package com.groupeisi.controllerRest;
 
 import com.groupeisi.dto.AppRoles;
 import com.groupeisi.service.AppRolesService;
@@ -25,7 +25,7 @@ public class AppRolesRestController {
         return appRolesService.getAppRole(id);
     }
 
-    @GetMapping("/{nom}")
+    @GetMapping("/nom/{nom}")
     public AppRoles getAppRole(@PathVariable("nom") String nom){
         return appRolesService.getAppRole(nom);
     }
