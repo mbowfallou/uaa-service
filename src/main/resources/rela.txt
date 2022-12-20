@@ -4,3 +4,7 @@ spring.application.name=Admin-Service
 eureka.client.service-url.defaultZone=http://localhost:8761/eureka
 security.basic.enable: false
 security.ignored=/**
+
+mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install
+mvn clean verify sonar:sonar
+mvn sonar:sonar -Dsonar.login=sqp_dee618009e554bcf801a3322e54843688d0d303b

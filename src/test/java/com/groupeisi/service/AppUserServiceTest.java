@@ -10,13 +10,23 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class AppUserServiceTest {
     @Autowired
     private AppUserService appUserService;
+
+    @Test
+    void createAppUser(){
+        AppUser user = new AppUser();
+        user.setPrenom("Djeum");
+        user.setNom("DIENG");
+        user.setEmail("dieuwrine@gmail.com");
+
+        AppUser user_save = appUserService.createAppUser(user);
+
+        Assertions.assertEquals(user.getPrenom(), user_save.getPrenom());
+    }
 
     @Test
     void getAppUserByLastame() {
@@ -47,9 +57,9 @@ class AppUserServiceTest {
 
     @Test
     void getAppUsers(){
-        int taille = appUserService.getAppUsers().size();
+        List<AppUser> users = appUserService.getAppUsers();
 
-        Assertions.assertEquals(3, taille);
+        Assertions.assertNotNull(users);
     }
 
     @Test
@@ -60,25 +70,13 @@ class AppUserServiceTest {
     }
 
     @Test
-    void createAppUser(){
-        AppUser user = new AppUser();
-        user.setPrenom("Daouda");
-        user.setNom("BA");
-        user.setEmail("dave@hotmail.com");
-
-        AppUser user_save = appUserService.createAppUser(user);
-
-        Assertions.assertEquals(user.getPrenom(), user_save.getPrenom());
-    }
-
-    @Test
     void updateAppUser(){
         AppUser user = new AppUser();
-        user.setPrenom("Alle");
-        user.setNom("LADIANE");
-        user.setEmail("ladioula@yahoo.fr");
+        user.setPrenom("Alle2");
+        user.setNom("LADIANE2");
+        user.setEmail("ladioula2@yahoo.fr");
 
-        AppUser user_save = appUserService.updateAppUser(4, user);
+        AppUser user_save = appUserService.updateAppUser(2, user);
 
         Assertions.assertEquals(user.getPrenom(), user_save.getPrenom());
     }

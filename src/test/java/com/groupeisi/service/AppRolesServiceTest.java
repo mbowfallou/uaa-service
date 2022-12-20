@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
@@ -17,35 +19,10 @@ class AppRolesServiceTest {
     private AppRolesService appRolesService;
 
     @Test
-    void getAppRoles() {
-        int taille = appRolesService.getAppRoles().size();
-
-        Assertions.assertEquals(2, taille);
-    }
-
-    @Test
-    void getAppRoleById() {
-        AppRoles role = appRolesService.getAppRole(1);
-        //System.out.println(role);
-
-        Assertions.assertNotNull(role);
-    }
-
-    @Test
-    void getAppRoleByName() {
-        AppRoles role = new AppRoles();
-        role.setNom("ROLE_ADMIN");
-
-        AppRoles role_saved = appRolesService.getAppRole("ROLE_ADMIN");
-
-        Assertions.assertEquals(role.getNom(), role_saved.getNom());
-    }
-
-    @Test
     void createAppRole() {
         AppRoles role = new AppRoles();
         //role.setNom("ROLE_SUPERADMIN");
-        role.setNom("ROLE_A_Supprimer");
+        role.setNom("New_ROLE2");
 
         AppRoles role_save = appRolesService.createAppRole(role);
 
@@ -53,9 +30,35 @@ class AppRolesServiceTest {
     }
 
     @Test
+    void getAppRoles() {
+        List<AppRoles> roles = appRolesService.getAppRoles();
+
+        Assertions.assertNotNull(roles);
+    }
+
+    @Test
+    void getAppRoleById() {
+        AppRoles role = appRolesService.getAppRole(1);
+        System.out.println("okay\n");
+        int val=0;
+
+        Assertions.assertNotNull(role);
+    }
+
+    @Test
+    void getAppRoleByName() {
+        AppRoles role = new AppRoles();
+        role.setNom("ROLE_SUPERADMIN");
+
+        AppRoles role_saved = appRolesService.getAppRole("ROLE_SUPERADMIN");
+
+        Assertions.assertEquals(role.getNom(), role_saved.getNom());
+    }
+
+    @Test
     void updateAppRole() {
         AppRoles role = appRolesService.getAppRole(2);
-        role.setNom("USER_SIMPLE");
+        role.setNom("ROLE_SIMPLE2");
 
         AppRoles role_saved = appRolesService.updateAppRole(2, role);
         Assertions.assertEquals(role.getNom(), role_saved.getNom());
@@ -63,7 +66,7 @@ class AppRolesServiceTest {
 
     @Test
     void deleteAppRole() {
-        appRolesService.deleteAppRole(1);
+        appRolesService.deleteAppRole(4);
 
         Assertions.assertTrue(true);
     }
